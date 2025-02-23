@@ -2,6 +2,7 @@
 #include <WiFi.h>
 #include <esp_wpa2.h>
 
+//网络连接信息
 const char *ssid = "eduroam";
 #define EAP_IDENTITY "your_identity"
 #define EAP_PASSWORD "your_password"
@@ -19,11 +20,11 @@ void setup() {
   Serial.println(WiFi.macAddress());
   Serial.printf(ssid);
 
-//wpa2
-
+  //wpa2
   esp_wifi_sta_wpa2_ent_set_identity((uint8_t *)EAP_IDENTITY, strlen(EAP_IDENTITY));
   esp_wifi_sta_wpa2_ent_set_username((uint8_t *)EAP_IDENTITY, strlen(EAP_IDENTITY));
-  esp_wifi_sta_wpa2_ent_set_password((uint8_t *)EAP_PASSWORD, strlen(EAP_PASSWORD)); esp_wifi_sta_wpa2_ent_enable();
+  esp_wifi_sta_wpa2_ent_set_password((uint8_t *)EAP_PASSWORD, strlen(EAP_PASSWORD)); 
+  esp_wifi_sta_wpa2_ent_enable();
   WiFi.begin(ssid);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
